@@ -10,7 +10,10 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.anjing_kucing_pedia.model.Anjing;
 import com.example.anjing_kucing_pedia.model.Hewan;
+import com.example.anjing_kucing_pedia.model.Kucing;
+import com.example.anjing_kucing_pedia.model.Sapi;
 
 import java.util.List;
 
@@ -26,9 +29,17 @@ public class DaftarHewanActivity extends AppCompatActivity {
         setContentView(R.layout.activity_daftar_hewan);
         Intent intent = getIntent();
         jenisHewan = intent.getStringExtra(MainActivity.JENIS_GALERI_KEY);
-        TextView txJudul = findViewById(R.id.text_title_daftar);
-        txJudul.setText("DAFTAR BERBAGAI RAS" +jenisHewan.toUpperCase());
         hewans = DataProvider.getHewansByTipe(this,jenisHewan);
+        TextView txJudul = findViewById(R.id.text_title_daftar);
+        String judul="";
+        if(hewans.get(0) instanceof Anjing) {
+            judul = getString(R.string.judul_list_anjing);
+        }else if (hewans.get(0) instanceof Sapi){
+            judul = getString(R.string.judul_list_sapi);
+        }else if (hewans.get(0) instanceof Kucing){
+            judul = getString(R.string.judul_list_kucing);
+        }
+        txJudul.setText(judul);
         setuplistview();
     }
 

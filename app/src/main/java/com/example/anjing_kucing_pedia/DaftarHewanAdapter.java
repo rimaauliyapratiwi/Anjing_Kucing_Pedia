@@ -18,7 +18,6 @@ public class DaftarHewanAdapter extends ArrayAdapter<Hewan> {
     public DaftarHewanAdapter(Context context, List<Hewan> hewans){
         super(context, R.layout.row_daftar_hewan,hewans);
         this.context =context;
-
     }
 
     private static class ViewHolder{
